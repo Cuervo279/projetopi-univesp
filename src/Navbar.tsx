@@ -7,13 +7,13 @@ function Navbar() {
     const getColor = (index: number) => {
         switch (index) {
             case 0: return '#ff5c5c';
-            case 1: return '#ffb84d'; // Cor 2
-            case 2: return '#00bdd6'; // Cor 3
-            case 3: return '#4CAF50'; // Cor 4
-            case 4: return '#ff4281'; // Cor 5
-            case 5: return '#8c24a8'; // Cor 6
+            case 1: return '#ffb84d';
+            case 2: return '#00bdd6';
+            case 3: return '#4CAF50';
+            case 4: return '#ff4281';
+            case 5: return '#8c24a8';
             case 10: return '#ffd000';
-            default: return '#000';   // Cor padrão
+            default: return '#000';
         }
     };
 
@@ -23,25 +23,25 @@ function Navbar() {
 
         linkItems.forEach((linkItem, index) => {
             linkItem.addEventListener("click", () => {
-                // Remover a classe 'active' do item anterior
+                
                 document.querySelector(".link-item.active")?.classList.remove("active");
-                // Adicionar a classe 'active' no item clicado
+                
                 linkItem.classList.add("active");
-                setActiveIndex(index); // Atualizar o estado de activeIndex
-                // Mover o indicador
+                setActiveIndex(index);
+                
                 if (indicator) {
-                    indicator.style.left = `${index * 95 + 48}px`; // Ajuste de acordo com o seu layout
+                    indicator.style.left = `${index * 95 + 48}px`;
                 }
             });
         });
 
-        // Cleanup para evitar múltiplos event listeners
+        // limpa múltiplos event listeners
         return () => {
             linkItems.forEach(linkItem => {
                 linkItem.removeEventListener("click", () => {});
             });
         };
-    }, []); // Esse efeito será executado uma vez, após o componente ser montado
+    }, []);
 
     return (
         <nav className="nav">
