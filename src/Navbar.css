@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav{
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 12px;
+    background: #ffffff;
+    padding: 0 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 15px auto;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.nav-content{
+    display: flex;
+    height: 100px;
+    align-items: center;
+    list-style: none;
+    position: relative;
+}
+.link-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 120px;
+    width: 95px;
+    text-decoration: none;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.link-item.active{
+    transform: translateY(-10px);
+    box-shadow: rgb(247, 230, 0) 0px 20px 20px -20px;
+    /* box-shadow: rgba(161, 214, 203, 0.4) 0px 5px, rgba(161, 214, 203, 0.3) 0px 10px, rgba(161, 214, 203, 0.2) 0px 15px, rgba(161, 214, 203, 0.1) 0px 20px, rgba(161, 214, 203, 0.05) 0px 25px; */
+}
+
+.link-item.active .lucide{
+    color: var(--active-color);
+}
+
+.lucide{
+    font-size: 38px;
+    /* color: #000000; */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.link-text{
+    position: absolute;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--robin-egg);
+    opacity: 0;
+    transform: translateY(32px);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.link-item.active .link-text{
+    opacity: 1;
+    color: var(--active-color);
+    
+}
+.indicator{
+    position: absolute;
+    top: -14px;
+    left: 48px;
+    height: 36px;
+    width: 36px;
+    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/009/665/124/small_2x/football-ball-illustration-3d-image-transparent-background-png.png');
+    background-size: cover;
+    background-color: #ffc400;
+    border: 6px solid var(--baby-blue);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s cubic-bezier(0.68, 1, 0.265, 1.1);
+}
+
+.indicator::before,
+.indicator::after{
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    height: 24px;
+    width: 19px;
+}
+.indicator::before{
+    left: -22px;
+    background-color: #FFF;
+    border-top-right-radius: 25px;
+    box-shadow: 1px -13px var(--baby-blue);
+    
+}
+.indicator::after{
+    right: -22px;
+    background-color: #FFF;
+    border-top-left-radius: 25px;
+    box-shadow: -1px -13px var(--baby-blue);
+}
+
+.nav-list-rank span{
+    margin-top: 15px;
+}
+
+.nav-list-rank svg{
+    margin-top: 15px;
+    animation: blinkstar 5s infinite;
+}
+
+@keyframes blinkstar {
+        0% {
+          transform: scale(1.5) rotate(0deg);
+        }
+        25%{
+            transform: rotate(-20deg);
+        }
+        50% {
+          transform: scale(2) rotate(0deg); 
+        }
+        75% {
+            transform: rotate(-20deg); 
+        }
+        100% {
+          transform: scale(1.5) rotate(0deg); /* Zoom out back to normal size */
+        }
+}
+
+@keyframes rotateAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(20deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
