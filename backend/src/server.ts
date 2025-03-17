@@ -1,24 +1,23 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-import "./database";
-
-
-dotenv.config();
+import rankingRoutes from "./rankingRoutes";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
-
+// Middlewares
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // Permite receber JSON no corpo das requisições resolveu o erro no rankingRoutes
 
-// Rota inicial de teste faz u L
+// Rotas principais
+app.use("/api", rankingRoutes);
+
+// Rota raiz (só para teste)
 app.get("/", (req, res) => {
-  res.send("Servidor rodando!");
+  res.send("Servidor backend rodando com sucesso!");
 });
 
-// servidor
+// Inicialização do servidor
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(` Servidor rodando na porta ${PORT}`);
 });
