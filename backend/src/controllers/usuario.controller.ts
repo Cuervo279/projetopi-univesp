@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { openDb } from '../database/db';
 import bcrypt from 'bcrypt';
+import { gerarToken } from '../utils/auth'; // <<-- Importação nova
 
 // Listar todos os usuários (sem senha)
 export async function getUsuarios(req: Request, res: Response): Promise<Response> {
@@ -28,7 +29,7 @@ export async function createUsuario(req: Request, res: Response): Promise<Respon
   return res.status(201).send('Usuário criado');
 }
 
-// Login de usuário
+// Login de usuário com JWT
 export const loginUsuario = async (
   req: Request,
   res: Response
@@ -46,8 +47,11 @@ export const loginUsuario = async (
     return res.status(401).json({ mensagem: 'Senha incorreta' });
   }
 
+  const token = gerarToken({ id: usuario.id, email: usuario.email });
+
   return res.json({
     mensagem: 'Login bem-sucedido',
+    token, // <<-- Aqui está o token real
     usuario: {
       id: usuario.id,
       nome: usuario.nome,

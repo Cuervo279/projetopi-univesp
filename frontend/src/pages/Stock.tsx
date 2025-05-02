@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import api from '../../../backend/src/services/api';
+import api from '../services/api'; // Corrigido o caminho
 import { useAuth } from '../contexts/AuthContext'; 
 
 interface Product {
@@ -23,16 +23,16 @@ export default function Stock() {
   }, []);
 
   const loadProducts = async () => {
-    const response = await api.get('/products');
+    const response = await api.get('/produtos');
     setProducts(response.data as Product[]);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (editingProduct) {
-      await api.put(`/products/${editingProduct.id}`, formData);
+      await api.put(`/produtos/${editingProduct.id}`, formData);  //alterado
     } else {
-      await api.post('/products', formData);
+      await api.post('/produtos', formData); //alterado
     }
     loadProducts();
     setEditingProduct(null);
@@ -40,7 +40,7 @@ export default function Stock() {
   };
 
   const handleDelete = async (id: number) => {
-    await api.delete(`/products/${id}`);
+    await api.delete(`/produtos/${id}`);  // alterado
     loadProducts();
   };
 

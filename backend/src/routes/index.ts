@@ -10,7 +10,7 @@ const router = Router();
 router.use('/produtos', producRoutes);
 router.use('/caixa', caixaRoutes);
 router.use('/vendas', vendaRoutes);
-router.use('/usuarios', usuarioRoutes); // bomba quantica requer cuidados futuros 
+router.use('/usuarios', usuarioRoutes); 
 
 router.get('/', (req, res) => {
   res.send('API funcionando!');

@@ -1,7 +1,9 @@
 import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
-import api from '../../../backend/src/services/api';
+import api from '../services/api'; // Corrigido o caminho
 
 interface User {
+  id: number;
+  nome: string;
   email: string;
 }
 
@@ -18,19 +20,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
-      // Verificar token válido com API <- Valber
+    const userData = localStorage.getItem('user');
+    if (token && userData) {
+      setUser(JSON.parse(userData));
+      // Verificação de validade do token pode ser feita por uma rota do backend se quiser
     }
   }, []);
 
   const login = async (email: string, password: string) => {
-    const response = await api.post<{ token: string }>('/auth/login', { email, password });
-    localStorage.setItem('token', response.data.token);
-    setUser({ email });
+    const response = await api.post('/usuarios/login', { email, senha: password });
+
+    const { token, usuario } = response.data;
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(usuario));
+    setUser(usuario);
   };
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setUser(null);
   };
 
