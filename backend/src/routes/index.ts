@@ -6,7 +6,7 @@ import usuarioRoutes from './usuario.routes';
 
 
 const router = Router();
-
+// corrigido alterando a versão npm
 router.use('/produtos', producRoutes);
 router.use('/caixa', caixaRoutes);
 router.use('/vendas', vendaRoutes);
