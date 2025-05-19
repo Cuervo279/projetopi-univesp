@@ -3,9 +3,7 @@
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/kellydatabase/Univesp_PI1/blob/main/LICENSE) 
 
 # Sobre a aplicação
-Esse repositório é dedicado ao INFOGESTÃO: Automatização do Gerenciamento de Dados do Polo Caminho do Mar é uma aplicação, criada pelos alunos do Eixo de Computação da Faculdade Virtual do Estado de São Paulo - Univesp e faz parte do Projeto Integrador I do 4° semestre do curso.
 
-A aplicação consiste em auxiliar a Secretaria no cadastro, consulta e emissão de relatórios dos alunos do Polo Ceu Caminho do Mar.
 
 Site Faculdade Virtual do Estado de São Paulo - Univesp: https://univesp.br/
 
