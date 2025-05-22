@@ -37,7 +37,7 @@ export default function Dashboard() {
           Gerenciar Estoque
         </Link>
         <Link
-          to="/sales/new"
+          to="/newsales"
           className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">
           Nova Venda
         </Link>

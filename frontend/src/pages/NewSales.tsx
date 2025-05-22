@@ -12,13 +12,14 @@ interface Product {
   quantidade: number;
 }
 
-export default function Stock() {
+export default function NewSales() {
   const [products, setProducts] = useState<Product[]>([]);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [formData, setFormData] = useState({
     id_produto: '',
     nome: '',
+    nome_cliente: '',
     descricao: '',
     preco_custo: '',
     preco_venda: '',
@@ -55,6 +56,7 @@ export default function Stock() {
     setFormData({    
       id_produto: '',
       nome: '',
+      nome_cliente: '',
       descricao: '',
       preco_custo: '',
       preco_venda: '',
@@ -83,42 +85,76 @@ export default function Stock() {
         </div>
       </header>
 
-      <h1 className="text-3xl font-bold mb-8 text-stone-100">Gerenciamento de Estoque</h1>
+      <h1 className="text-3xl font-bold mb-8 text-stone-100">Registro de Venda</h1>
       
       <form onSubmit={handleSubmit} className="bg-stone-800 p-6 rounded-lg shadow-md mb-8">
-        <h3 className="text-2xl font-bold mb-8 text-stone-100">Adicionar novo produto</h3>
+        
         
         <div className="grid grid-cols-4 gap-4 mb-4">
-          {/* Nome ocupa a linha toda */}
+
+         
           <input
             type="text"
-            placeholder="Nome do Produto"
-            className="p-2 border rounded col-span-4"
-            value={formData.nome}
-            onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+            placeholder="Nome do Cliente"
+            className="p-2 border rounded col-span-2"
+            value={formData.nome_cliente}
+            onChange={(e) => setFormData({ ...formData, nome_cliente: e.target.value })}
             required
           />
 
-          {/* Linha 2: 3 campos + botão */}
-          <input
-            type="number"
-            placeholder="Preço Custo"
+            <input
+            type="text"
+            list="formaPagamento"
+            placeholder="Forma de Pagamento"
             step="0.01"
             className="p-2 border rounded"
             value={formData.preco_custo}
             onChange={(e) => setFormData({ ...formData, preco_custo: e.target.value })}
             required
+            />
+            <datalist id="formaPagamento">
+                <option value="Dinheiro" />
+                <option value="Cartão de Crédito" />
+                <option value="Cartão de Débito" />
+                <option value="Pix" />
+            </datalist>
+
+            <input
+            type="text"
+            list="tipoVenda"
+            placeholder="Tipo de Atendimento"
+            step="0.01"
+            className="p-2 border rounded"
+            //value={formData.preco_custo}
+            //onChange={(e) => setFormData({ ...formData, preco_custo: e.target.value })}
+            required
+            />
+            <datalist id="tipoVenda">
+                <option value="Online" />
+                <option value="Presencial" />
+            </datalist>
+
+        <h6 className="text-2xl font-bold mb-8 text-stone-100 col-span-4 p-2">Adicionar novo produto</h6>
+
+          <input
+            type="integer"
+            placeholder="Código Produto"
+            //step="0.01"
+            className="p-2 border rounded"
+            //value={formData.preco_custo}
+            //onChange={(e) => setFormData({ ...formData, preco_custo: e.target.value })}
+            required
           />
 
           <input
-            type="number"
-            placeholder="Preço Venda"
-            step="0.01"
-            className="p-2 border rounded"
-            value={formData.preco_venda}
-            onChange={(e) => setFormData({ ...formData, preco_venda: e.target.value })}
+            type="text"
+            placeholder="Nome do Produto"
+            className="p-2 border rounded col-span-2"
+            value={formData.nome}
+            onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
             required
           />
+
 
           <input
             type="number"
@@ -128,13 +164,30 @@ export default function Stock() {
             onChange={(e) => setFormData({ ...formData, quantidade: e.target.value })}
             required
           />
+        
+            <div className="p-2"></div>
+
+                  <button
+            type="submit"
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+          >
+            {editingProduct ? 'Atualizar' : 'Cancelar Venda'}
+          </button>
 
           <button
             type="submit"
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
-            {editingProduct ? 'Atualizar' : 'Adicionar'}
+            {editingProduct ? 'Atualizar' : 'Adicionar Produto'}
           </button>
+
+          <button
+            type="submit"
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            {editingProduct ? 'Atualizar' : 'Finalizar Venda'}
+          </button>
+
         </div>
       </form>
 
@@ -174,6 +227,7 @@ export default function Stock() {
                     setFormData({
                       id_produto: product.id_produto.toString(),
                       nome: product.nome,
+                      nome_cliente: venda.nome_cliente,
                       descricao: product.descricao,
                       preco_custo: product.preco_custo.toString(),
                       preco_venda: product.preco_venda.toString(),

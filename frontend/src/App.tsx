@@ -3,6 +3,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Stock from './pages/Stock';
+import NewSales from './pages/NewSales';
 import Sales from './pages/Sales';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -20,6 +21,10 @@ export default function App() {
             <Route
               path="/stock"
               element={<PrivateRoute element={<Stock />} />}
+            />
+                        <Route
+              path="/newsales"
+              element={<PrivateRoute element={<NewSales />} />}
             />
             <Route
               path="/sales"
